@@ -4,6 +4,8 @@
 
 I don't want money for that!
 
+And don't forget: The device is "**Turkish**"!
+
 ## Passwords
 
 | User  | Password               |  Type      |
@@ -67,7 +69,8 @@ hardestharvest...
 hydra-wizard
 ```
 
-After that, use admin or user credentials for loging in with ssh. Try sudo su, sudo nano /etc/sudoers, nano /etc/sudoers or su. But don't forget: The device is "**Turkish**"!
+After that, use admin or user credentials for loging in with ssh. Try sudo su, sudo nano /etc/sudoers, nano /etc/sudoers or su.
+
 **And you have access!**
 
 You can select a difficulty for my machine.
