@@ -16,7 +16,7 @@ I don't want money for that!
 ## Brute forcing for easy credentials and logging in.
 - Open the Terminal/Shell/Console.
   
-![img](https://raw.githubusercontent.com/ErrorCode0000/hhhaaarrrvvveeessstttwwwrrriiittteeeuuupppfffooorrrhhhtttbbb/refs/heads/main/Terminal.png?token=GHSAT0AAAAAAC52SGTCSODLAZAI4Y4BA5DOZ4TL6SA)
+![img](/Terminal.png)
 
 - Create two wordlists manually.
 
@@ -61,7 +61,7 @@ hardestharvest...
 
 - Let's "**HYDRA**"!
 
-  ![img](https://raw.githubusercontent.com/ErrorCode0000/hhhaaarrrvvveeessstttwwwrrriiittteeeuuupppfffooorrrhhhtttbbb/refs/heads/main/Hydra.png?token=GHSAT0AAAAAAC52SGTDUQYKHRUUAHHMG5PAZ4TL5PQ)
+  ![img](/Hydra.png)
   
 ```bash
 hydra-wizard
