@@ -71,6 +71,6 @@ hydra-wizard
 
 After that, use admin or user credentials for loging in with ssh. Try sudo su, sudo nano /etc/sudoers, nano /etc/sudoers or su.
 
-**And you have access!**
+**And you have access!** (If you did not touched to the fake exploit file!)
 
 You can select a difficulty for my machine.
