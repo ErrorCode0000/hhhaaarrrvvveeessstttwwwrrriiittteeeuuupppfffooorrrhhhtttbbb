@@ -13,7 +13,7 @@ I don't want money for that!
 | root  | hardestharvest | admin |
 
 
-## 1st step: Brute forcing for easy credentials.
+## Brute forcing for easy credentials and logging in.
 - Open the Terminal/Shell/Console.
   
 ![img](https://raw.githubusercontent.com/ErrorCode0000/hhhaaarrrvvveeessstttwwwrrriiittteeeuuupppfffooorrrhhhtttbbb/refs/heads/main/Terminal.png?token=GHSAT0AAAAAAC52SGTCSODLAZAI4Y4BA5DOZ4TL6SA)
@@ -70,4 +70,5 @@ hydra-wizard
 After that, use admin or user credentials for loging in with ssh. Try sudo su, sudo nano /etc/sudoers, nano /etc/sudoers or su.
 
 **And you have access!**
-You can select a difficulty for me.
+
+You can select a difficulty for my machine.
