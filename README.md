@@ -20,13 +20,7 @@ To gain initial access, we can leverage the discovered wordlist (`harvest.htb/wo
 
 **Step 1: Download the Wordlist**
 
-First, ensure you have the `wordlist.txt` file from the target web server on your local machine. You can use tools like `wget` or `curl`:
-
-wget [https://www.google.com/search?q=http://harvest.htb/wordlist.txt](https://www.google.com/search?q=http://harvest.htb/wordlist.txt)
-
-# or
-
-curl -o wordlist.txt [https://www.google.com/search?q=http://harvest.htb/wordlist.txt](https://www.google.com/search?q=http://harvest.htb/wordlist.txt)
+First, ensure you have the `wordlist.txt` file from the target web server on the victims PC. You can use tools like `wget` or `curl`.
 
 **Step 2: Execute the Hydra Brute-Force Attack**
 
@@ -54,15 +48,14 @@ Replace `<username>` with the username you discovered (e.g., `user`, `administra
 **Step 4: Privilege Escalation Attempts**
 
 After gaining initial access via SSH, you can attempt various privilege escalation techniques to gain higher-level access (e.g., `root`). Common commands to try include:
+```bash
+sudo -l
+sudo python3
+```
 
-sudo su
-sudo -l \# To list commands the current user can run with sudo
-sudo nano /etc/sudoers
-nano /etc/sudoers
-su
+```python3
+import os
+os.system("su")
+```
 
 **Important Note:** The writeup mentions "(If you did not touched to the fake exploit file\!)". This implies there might be a decoy or misleading file on the system intended to divert your efforts. It's crucial to be aware of such potential rabbit holes during your enumeration.
-
-**Conclusion:**
-
-By systematically brute-forcing the SSH service with the identified usernames and the provided wordlist, you should be able to obtain initial access to the Harvest VM. Subsequently, exploring potential privilege escalation vectors with commands like `sudo` and `su` will be the next logical step towards achieving a higher level of control. Remember to pay attention to any potential red herrings or misleading information present on the system.
