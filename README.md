@@ -2,75 +2,67 @@
 
 **Important:**
 
-I don't want money for that!
+The VM hosts a valuable wordlist accessible via the web server at `harvest.htb/wordlist.txt`.
 
-And don't forget: The device is "**Turkish**"!
+**Key Reminder:** The target VM's locale is "**Turkish**"\! This might be relevant for potential file encodings or other system-specific behaviors.
 
-## Passwords
+## Credentials
 
-| User  | Password               |  Type      |
-| ----- | -----------------------|----------- |
-| user | butiamadmin | admin |
-| administrator | admin | user |
-| root  | hardestharvest | admin |
+| User          | Password         | Type  |
+|---------------|------------------|-------|
+| `user`        | `butiamadmin`    | admin |
+| `administrator` | `admin`          | user  |
+| `root`        | `hardestharvest` | admin |
 
+## Brute-Forcing for Credentials and SSH Login
 
-## Brute forcing for easy credentials and logging in.
-- Open the Terminal/Shell/Console.
-  
-![img](/Terminal.png)
+To gain initial access, we can leverage the discovered wordlist (`harvest.htb/wordlist.txt`) to perform a brute-force attack against the SSH service. We'll utilize `hydra`, a powerful command-line password cracking tool.
 
-- Create two wordlists manually.
+**Step 1: Download the Wordlist**
 
-**Like:**
+First, ensure you have the `wordlist.txt` file from the target web server on your local machine. You can use tools like `wget` or `curl`:
 
-admin
+wget [https://www.google.com/search?q=http://harvest.htb/wordlist.txt](https://www.google.com/search?q=http://harvest.htb/wordlist.txt)
 
-root
+# or
 
-user
+curl -o wordlist.txt [https://www.google.com/search?q=http://harvest.htb/wordlist.txt](https://www.google.com/search?q=http://harvest.htb/wordlist.txt)
 
-john
+**Step 2: Execute the Hydra Brute-Force Attack**
 
-administrator
+Now, we'll use `hydra` to attempt logins with the known usernames and the downloaded wordlist. We'll run separate commands for each potential username (`user`, `administrator`, and `root`).
 
-harvest
+hydra -l user -P ./wordlist.txt ssh://harvest.htb
+hydra -l administrator -P ./wordlist.txt ssh://harvest.htb
+hydra -l root -P ./wordlist.txt ssh://harvest.htb
 
-guest...
+**Explanation of the `hydra` command:**
 
---------------
+  * `hydra`: The command-line brute-forcing tool.
+  * `-l <username>`: Specifies the target username for the attack.
+  * `-P <path_to_wordlist>`: Specifies the path to the wordlist file you downloaded (`./wordlist.txt` assumes it's in your current directory).
+  * `ssh://<target_ip_or_hostname>`: Defines the service (`ssh`) and the target machine (`harvest.htb`).
 
+**Step 3: Successful Login via SSH**
 
-administartor
+Once `hydra` successfully identifies a valid username and password combination, you can log in to the Harvest VM using the `ssh` command:
 
-admin
+ssh \<username\>@harvest.htb
 
-user
+Replace `<username>` with the username you discovered (e.g., `user`, `administrator`, or `root`) and enter the corresponding password when prompted.
 
-butiamadmin
+**Step 4: Privilege Escalation Attempts**
 
-1234
+After gaining initial access via SSH, you can attempt various privilege escalation techniques to gain higher-level access (e.g., `root`). Common commands to try include:
 
-123456
+sudo su
+sudo -l \# To list commands the current user can run with sudo
+sudo nano /etc/sudoers
+nano /etc/sudoers
+su
 
-harvest
+**Important Note:** The writeup mentions "(If you did not touched to the fake exploit file\!)". This implies there might be a decoy or misleading file on the system intended to divert your efforts. It's crucial to be aware of such potential rabbit holes during your enumeration.
 
-hardest
+**Conclusion:**
 
-hardestharvest...
-
----------------
-
-- Let's "**HYDRA**"!
-
-  ![img](/Hydra.png)
-  
-```bash
-hydra-wizard
-```
-
-After that, use admin or user credentials for loging in with ssh. Try sudo su, sudo nano /etc/sudoers, nano /etc/sudoers or su.
-
-**And you have access!** (If you did not touched to the fake exploit file!)
-
-You can select a difficulty for my machine.
+By systematically brute-forcing the SSH service with the identified usernames and the provided wordlist, you should be able to obtain initial access to the Harvest VM. Subsequently, exploring potential privilege escalation vectors with commands like `sudo` and `su` will be the next logical step towards achieving a higher level of control. Remember to pay attention to any potential red herrings or misleading information present on the system.
